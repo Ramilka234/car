@@ -1,0 +1,13 @@
+{% extends 'inspection/base.html' %}
+
+{% block title %}Deregistration Request{% endblock %}
+
+{% block content %}
+<h1>Request to Deregister a Car</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Request</button>
+</form>
+<a href="{% url 'index' %}">Back to Articles</a>
+{% endblock %}

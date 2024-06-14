@@ -1,0 +1,28 @@
+{% extends 'inspection/base.html' %}
+
+{% block title %}Заявка{% endblock %}
+
+{% block content %}
+<h1>Заявка на постановку/снятие с учета автомобиля</h1>
+<form id="order-form" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="button" onclick="confirmSubmission()">Отправить заявку</button>
+</form>
+
+<div id="confirmation-modal" style="display:none;">
+    <p>Вы уверены, что хотите отправить заявку?</p>
+    <button type="button" onclick="document.getElementById('order-form').submit()">Да</button>
+    <button type="button" onclick="closeModal()">Нет</button>
+</div>
+
+<script>
+    function confirmSubmission() {
+        document.getElementById('confirmation-modal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('confirmation-modal').style.display = 'none';
+    }
+</script>
+{% endblock %}

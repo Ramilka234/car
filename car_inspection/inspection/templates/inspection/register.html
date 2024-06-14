@@ -1,0 +1,14 @@
+{% extends 'inspection/base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<h1>Регистрация</h1>
+<div class="register-container">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+</div>
+{% endblock %}

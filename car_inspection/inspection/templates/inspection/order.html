@@ -1,0 +1,20 @@
+{% extends 'inspection/base.html' %}
+
+{% block title %}Order{% endblock %}
+
+{% block content %}
+<h1>Оставить заявку на технический осмотр</h1>
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label for="car">Выберите свою машину:</label>
+        <select id="car" name="car">
+            {% for car in user_cars %}
+            <option value="{{ car.id }}">{{ car.year }} {{ car.make }} {{ car.model }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    {{ form.as_p }}
+    <button type="submit">Отправить</button>
+</form>
+{% endblock %}

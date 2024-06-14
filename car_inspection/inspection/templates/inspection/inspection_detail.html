@@ -1,0 +1,14 @@
+{% extends 'inspection/base.html' %}
+
+{% block title %}Inspection Detail{% endblock %}
+
+{% block content %}
+<h1>Детали заявки</h1>
+<p>Машина: {{ inspection.car }}</p>
+<p>Дата: {{ inspection.date }}</p>
+<p>Пройдено: {% if inspection.passed %}Да{% else %}Нет{% endif %}</p>
+<p>Комментарии инспектора: {% if inspection.inspector_comments %}{{ inspection.inspector_comments }}{% else %}Комментариев нет{% endif %}</p>
+{% if user.is_staff %}
+<a href="{% url 'edit_inspection' inspection.pk %}">Редактировать</a>
+{% endif %}
+{% endblock %}

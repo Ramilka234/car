@@ -1,0 +1,35 @@
+{% extends 'inspection/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1>Статьи</h1>
+<ul class="article-list">
+    {% for article in articles %}
+    <li>
+        <a href="{% url 'article_detail' article.pk %}">
+            {{ article.title }}
+        </a>
+        <p>{{ article.date_published }}</p>
+    </li>
+    {% endfor %}
+</ul>
+<h1>Полезные ссылки</h1>
+<ul class="article-list">
+    <li>
+        <a href="https://gibdd.org/e">
+        Государственные услуги ГИБДД
+        </a>
+    </li>
+    <li>
+        <a href="https://es.pfrf.ru/">
+        Электронные услуги ПФР
+        </a>
+    </li>
+    <li>
+        <a href="http://pravo.minjust.ru/">
+         Нормативные правовые акты в РФ
+        </a>
+    </li>
+</ul>
+{% endblock %}

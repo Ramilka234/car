@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Inspection List</h1>
+<ul>
+    {% for inspection in inspections %}
+        <li>{{ inspection.car }} - {{ inspection.date }} - {{ inspection.passed }}</li>
+    {% endfor %}
+</ul>
+</body>
+</html>

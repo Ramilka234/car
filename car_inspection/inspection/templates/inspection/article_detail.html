@@ -1,0 +1,18 @@
+{% extends 'inspection/base.html' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+<div class="article-detail">
+    <h1>{{ article.title }}</h1>
+    <p class="article-date">{{ article.date_published }}</p>
+    <div class="article-content">
+        {{ article.content }}
+    </div>
+    {% if user.is_staff %}
+    <a href="{% url 'edit_article' article.pk %}" class="button">Редактировать статью</a>
+    <a href="{% url 'delete_article' article.pk %}" class="button">Удалить статью</a>
+    {% endif %}
+    <a href="{% url 'index' %}" class="button">Назад к статьям</a>
+</div>
+{% endblock %}

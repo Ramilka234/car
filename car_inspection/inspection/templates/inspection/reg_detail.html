@@ -1,0 +1,14 @@
+{% extends 'inspection/base.html' %}
+
+{% block title %}Inspection Detail{% endblock %}
+
+{% block content %}
+<h1>Детали заявки</h1>
+<p>Машина: {{ inspection.car }}</p>
+<p>Дата: {{ inspection.request_date }}</p>
+<p>Одобрен: {% if inspection.approved %}Да{% else %}Нет{% endif %}</p>
+<p>Тип заявки:{{ inspection.get_request_type_display}}</p>
+{% if user.is_staff %}
+<a href="{% url 'edit_reg' inspection.pk %}">Редактировать</a>
+{% endif %}
+{% endblock %}

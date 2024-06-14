@@ -1,0 +1,36 @@
+{% extends 'inspection/base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+    <h1>Профиль</h1>
+    <div class="profile-container">
+        <div class="user-info">
+            <h2>Информация о пользователе</h2>
+            <p><strong>Имя пользователя:</strong> {{ user.username }}</p>
+            <p><strong>Имя:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Дата регистрации:</strong> {{ user.date_joined }}</p>
+                <a href="{% url 'edit_profile' %}" class="edit-profile-btn">Редактировать профиль</a>
+        </div>
+
+        {% if user.is_authenticated and not user.is_staff %}
+        <div class="user-cars">
+            <h2>Ваши машины</h2>
+            <ul>
+                {% for car in cars %}
+                <li>{{ car.year }} {{ car.make }} {{ car.model }}</li>
+                {% endfor %}
+            </ul>
+            <h2>Добавить машину</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Добавить машину</button>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+
+
+{% endblock %}

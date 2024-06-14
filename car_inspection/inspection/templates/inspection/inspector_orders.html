@@ -1,0 +1,16 @@
+{% extends 'inspection/base.html' %}
+
+{% block title %}Inspector Orders{% endblock %}
+
+{% block content %}
+<h1>Заявки</h1>
+<ul>
+    {% for inspection in inspections %}
+    <li>
+        <a href="{% url 'inspection_details' inspection.pk %}">
+            {{ inspection.car.make }} {{ inspection.car.model }} - {{ inspection.date }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

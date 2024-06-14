@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Car Inspection{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'inspection/styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="main-nav">
+                <li><a href="{% url 'index' %}">Главная страница</a></li>
+                <li><a href="{% url 'contact' %}">Контакты</a></li>
+                {% if user.is_staff %}
+                <li><a href="{% url 'add_article' %}">Добавить статью</a></li>
+                {% endif %}
+                {% if user.is_authenticated and not user.is_staff %}
+                <li><a href="{% url 'order' %}">Технический осмотр</a></li>
+                <li><a href="{% url 'registration_request' %}">Регистрационные действия</a></li>
+                {% endif %}
+                {% if user.is_authenticated  %}
+                <li><a href="{% url 'my_orders' %}">Мои заявки</a></li>
+                <li><a href="{% url 'profile' %}">Профиль</a></li>
+
+                {% endif %}
+            </ul>
+            <ul class="user-nav">
+                {% if user.is_authenticated %}
+                    <li>
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit">Выход</button>
+                        </form>
+                    </li>
+
+                {% else %}
+                    <li><a href="{% url 'login' %}">Вход</a></li>
+                    <li><a href="{% url 'register' %}">Регистрация</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

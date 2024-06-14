@@ -1,0 +1,38 @@
+{% extends 'inspection/base.html' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<h1>Контактная информация</h1>
+<div class="contact-container">
+    <div class="contact-info">
+        <p><strong>Email:</strong> info@carinspection.com</p>
+        <p><strong>Телефон:</strong> +1 234 567 890</p>
+        <p><strong>Адрес:</strong>Москва,улица Девяткино,8с</p>
+        <div id="map" style="width: 100%; height: 400px;"></div>
+    </div>
+    <div class="working-hours">
+        <h2>Часы работы</h2>
+        <p><strong>Понедельник - Пятница:</strong> 9:00 - 18:00</p>
+        <p><strong>Суббота:</strong> 10:00 - 14:00</p>
+        <p><strong>Воскресенье:</strong> Закрыто</p>
+    </div>
+</div>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=ac44690a-1b0f-4fda-9df8-40ded1b70197" type="text/javascript"></script>
+<script type="text/javascript">
+    ymaps.ready(init);
+    function init(){
+        var myMap = new ymaps.Map("map", {
+            center: [55.76, 37.64], // Замените на координаты вашего местоположения
+            zoom: 10
+        });
+
+        var myPlacemark = new ymaps.Placemark([55.76, 37.64], {
+            hintContent: 'Наш офис',
+            balloonContent: '123 Примерная улица, Город, Страна'
+        });
+
+        myMap.geoObjects.add(myPlacemark);
+    }
+</script>
+{% endblock %}

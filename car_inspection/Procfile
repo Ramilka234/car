@@ -1,1 +1,1 @@
-web: gunicorn car_inspection.wsgi
+web: gunicorn inspection.wsgi
